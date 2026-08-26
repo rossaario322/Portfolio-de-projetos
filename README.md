@@ -34,10 +34,10 @@ HTML e CSS puros. Sem framework, sem biblioteca, sem dependência externa.
 
 ## Sobre o uso de IA neste material:
 
-Revisões de texto (ortografia, gramática, clareza);
-Organizar ideias que já eram minhas antes de escrever;
-Feedback sobre rascunhos que eu escrevi.
+- Revisões de texto (ortografia, gramática, clareza);
+- Organizar ideias que já eram minhas antes de escrever;
+- Feedback sobre rascunhos que eu escrevi.
 
-Todo o conteúdo é meu: os fatos, as histórias, as opiniões e as fotos.
+- Todo o conteúdo é meu: os fatos, as histórias, as opiniões e as fotos.
 
 
