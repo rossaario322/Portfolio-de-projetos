@@ -1,0 +1,159 @@
+/* ---------- base da pagina ---------- */
+body {
+  background-color: #fdf6ec;                          /* fundo creme */
+  color: #2b2b2b;                                     /* texto quase preto (preto puro cansa a vista) */
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;                                   /* espaco entre as linhas */
+  max-width: 760px;                                   /* impede a linha de texto de ficar larga demais */
+  margin: 40px auto;                                  /* 40px em cima/embaixo, "auto" centraliza */
+  padding: 0 20px;                                    /* respiro nas laterais no celular */
+}
+
+/* ---------- titulos ---------- */
+h1 {
+  color: #1f5f5b;
+  font-size: 34px;
+  margin-bottom: 6px;
+}
+
+h2 {                                                  /* titulo de cada projeto */
+  color: #1f5f5b;
+  font-size: 29px;
+  margin-top: 75px;                                   /* separa bem um projeto do outro */
+  margin-bottom: 4px;
+  border-bottom: 3px solid #1f5f5b;                   /* linha grossa: marca o inicio de um projeto */
+  padding-bottom: 8px;
+}
+
+h3 {                                                  /* subsecoes dentro de um projeto */
+  color: #3d5f52;
+  font-size: 14px;
+  text-transform: uppercase;                          /* deixa em caixa alta sem eu digitar assim */
+  letter-spacing: 1px;
+  margin-top: 34px;
+  margin-bottom: 6px;
+}
+
+/* ---------- linha pequena embaixo de cada titulo de projeto ---------- */
+.sub {
+  color: #7a6a55;
+  font-style: italic;
+  font-size: 15px;
+  margin-top: 0;
+  margin-bottom: 18px;
+}
+
+/* ---------- paragrafo de abertura ---------- */
+.intro {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+/* ---------- listas ---------- */
+ul, ol {
+  padding-left: 22px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+/* ---------- tabelas da ficha tecnica ---------- */
+table {
+  border-collapse: collapse;                          /* junta as bordas em uma linha so */
+  width: 100%;
+  margin-top: 14px;
+  font-size: 16px;
+}
+
+th, td {
+  border: 1px solid #e0d6c6;
+  padding: 8px 10px;
+  text-align: left;
+  vertical-align: top;                                /* alinha pelo topo quando a celula tem varias linhas */
+}
+
+th {
+  background-color: #f6ece0;
+  width: 38%;
+}
+
+/* ---------- citacoes ---------- */
+blockquote {
+  margin: 18px 0;
+  padding: 10px 18px;
+  border-left: 3px solid #1f5f5b;
+  background-color: #fbf1e2;
+  font-style: italic;
+  color: #5d5142;
+}
+
+/* ---------- formula / codigo ---------- */
+pre {
+  background-color: #f2e7d8;
+  border: 1px solid #e0d6c6;
+  padding: 12px;
+  font-family: Consolas, Monaco, monospace;
+  font-size: 15px;
+  overflow-x: auto;                                   /* formula longa rola em vez de estourar a pagina */
+}
+
+code {
+  font-family: Consolas, Monaco, monospace;
+  font-size: 15px;
+  background-color: #f2e7d8;
+  padding: 1px 4px;
+}
+
+/* ---------- identificacao no topo da pagina ---------- */
+header {
+  display: flex;                                      /* foto e dados lado a lado */
+  align-items: center;                                /* alinha pelo meio */
+  gap: 20px;
+  padding-bottom: 22px;
+  border-bottom: 2px solid #1f5f5b;                   /* linha que separa do resto */
+  margin-bottom: 30px;
+}
+
+.retrato {
+  width: 110px;
+  height: 110px;
+  flex-shrink: 0;                                     /* impede a foto de ser espremida */
+  object-fit: cover;                                  /* corta em vez de distorcer */
+  border-radius: 50%;                                 /* 50% deixa redonda */
+  border: 1px solid #e0d6c6;
+}
+
+.nome {
+  margin: 0;
+  font-size: 26px;
+  font-weight: bold;
+  color: #1f5f5b;
+  line-height: 1.2;
+}
+
+.dados {
+  margin: 4px 0 0;
+  font-size: 15px;
+  color: #7a6a55;
+}
+
+/* ---------- links ---------- */
+a {
+  color: #1f5f5b;
+}
+
+.link {
+  margin-top: 14px;
+  font-size: 16px;
+}
+
+/* ---------- nota do rodape sobre uso de IA ---------- */
+.nota {
+  margin-top: 70px;
+  padding-top: 20px;
+  border-top: 2px solid #1f5f5b;
+  font-size: 15px;
+  color: #6b5d4c;
+}

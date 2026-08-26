@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfólio de Projetos | Victor</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <img class="retrato" src="public/minha%20foto.jpg" alt="Foto de Victor Eduardo Ramos">
+  <div>
+    <p class="nome">Victor Eduardo Ramos</p>
+    <p class="dados">Curitiba, PR</p>
+    <p class="dados">Sistemas de Informação na PUCPR, de agosto de 2026 a dezembro de 2030</p>
+    <p class="dados">Direito, de março de 2025 a julho de 2026</p>
+    <p class="dados">Inglês pré-intermediário (B1.2)</p>
+  </div>
+</header>
+
+<h1>Portfólio de projetos</h1>
+<p class="intro">Juntei aqui os projetos que eu já fiz ou dos quais participei: análise de dados, sites e sistemas, um jogo em Python, a montagem do meu PC, um estágio com contratos públicos e três pesquisas do Ensino Médio. No fim estão a minha formação e as certificações. Alguns projetos são de faculdade ou de trabalho, outros eu fiz por conta mesmo.</p>
+
+
+<h2>1. Análise exploratória do catálogo Netflix</h2>
+<p class="sub">Tratamento e higienização de dados em planilha (Google Sheets) e modelagem de 5 tabelas dinâmicas sobre filmes e séries</p>
+
+<h3>Visão geral do projeto</h3>
+<p>Este projeto consiste em uma análise exploratória minuciosa do catálogo de filmes e séries da Netflix, desenvolvida inteiramente em planilha (Google Sheets), utilizando tabelas dinâmicas para responder perguntas essenciais sobre o perfil do conteúdo disponibilizado pela plataforma.</p>
+
+<h3>Tratamento e correção dos dados</h3>
+<p>Antes de montar as análises, identifiquei um problema de qualidade crítico nos dados: o dataset original trazia a duração de cada título como um texto único (ex: "90 min" ou "2 Seasons"), misturando número e unidade na mesma célula, o que impedia filtrar, ordenar ou comparar valores numericamente.</p>
+<p>Para resolver essa limitação, separei a informação em duas colunas novas: <code>duration_number</code> (o valor numérico, ex: 90) e <code>duration_type</code> (a unidade, "min" para filmes ou "Season"/"Seasons" para séries).</p>
+<p>A coluna <code>duration_type</code> precisou ser reconstruída com uma fórmula própria, pois os valores originais estavam inconsistentes em uma parte relevante da base (filmes aparecendo com unidade de temporada e vice-versa). A fórmula condicional aplicada foi:</p>
+
+<pre>=SE(B2="Movie"; "min"; SE(D2&gt;1; "Seasons"; "Season"))</pre>
+
+<ul>
+  <li>Lógica da fórmula: se o título é um filme (Movie), a unidade é sempre "min"; caso contrário (série), verifica se o número de temporadas em <code>duration_number</code> é maior que 1 para definir plural ("Seasons") ou singular ("Season").</li>
+</ul>
+
+<p>Com a separação e essa correção, tornou-se viável realizar análises numéricas reais sobre a duração do conteúdo, em vez de depender de texto solto ou de valores inconsistentes.</p>
+
+<h3>Ficha técnica</h3>
+<table>
+  <tr><th>Ferramenta utilizada</th><td>Google Sheets</td></tr>
+  <tr><th>Problema inicial</th><td>Duração mesclando número e texto com inconsistências</td></tr>
+  <tr><th>Novas colunas criadas</th><td>duration_number e duration_type</td></tr>
+  <tr><th>Fórmula aplicada</th><td>=SE(B2="Movie"; "min"; SE(D2&gt;1; "Seasons"; "Season"))</td></tr>
+  <tr><th>Repositório público</th><td><a href="https://github.com/rossaario322/analise-da-netflix">github.com/rossaario322/analise-da-netflix</a></td></tr>
+</table>
+
+<h3>Tabelas dinâmicas construídas e resultados</h3>
+<p>Com a base higienizada e padronizada, elaborei 5 visões dinâmicas fundamentadas para extrair insights sobre o catálogo:</p>
+
+<ol>
+  <li><strong>Distribuição por duração:</strong> analisa a duração de filmes e séries. O resultado mostra uma dispersão nos dados: como filmes e séries usam unidades de medida diferentes (minutos vs. temporadas), a maior concentração aparece tanto em torno de 1 temporada (para séries) quanto na faixa de 90 a 94 minutos (para filmes), refletindo os dois padrões de duração mais comuns do catálogo.</li>
+  <li><strong>Total de filmes vs. séries (com gráfico):</strong> compara a quantidade total de filmes e séries no catálogo. O resultado evidencia que os filmes constituem a expressiva maioria em relação às séries.</li>
+  <li><strong>Top 10 países que mais produzem conteúdo:</strong> ranking dos 10 países com mais títulos publicados. Decisão metodológica importante: o dataset inclui coproduções (títulos creditados a múltiplos países, ex: "Estados Unidos, Alemanha"). Para manter o ranking rigorosamente preciso, considerei apenas os títulos com um único país de produção, excluindo as coproduções dessa contagem.</li>
+  <li><strong>Quantidade de títulos por ano:</strong> tabela cruzando ano de lançamento com título, evidenciando o volume lançado a cada ano. 2018 destacou-se como o ano com o maior número histórico de lançamentos no catálogo.</li>
+  <li><strong>Quantidade de títulos por ano, segmentado por tipo (filme / série):</strong> mesma análise temporal dividindo entre filmes e séries. O resultado confirma que 2018 segue sendo o ano de pico, impulsionado principalmente pelo recorde de filmes lançados naquele ano.</li>
+</ol>
+
+
+<h2>2. Aroma Grão: site com sistema de login e painel administrativo</h2>
+<p class="sub">Site institucional desenvolvido com apoio de IA (Claude, Gemini e Antigravity) com autenticação e painel admin via Supabase</p>
+
+<h3>Visão geral e metodologia de desenvolvimento</h3>
+<p>O Aroma Grão é um site institucional desenvolvido com apoio de ferramentas modernas de inteligência artificial (Claude, Gemini e Antigravity), combinando geração de código assistida por IA com decisões estratégicas de produto, definição de escopo e arquitetura de funcionalidades sob minha liderança.</p>
+<p>A aplicação foi concebida para atender à experiência do cliente no ambiente institucional e fornecer uma infraestrutura de retaguarda completa para gestão comercial.</p>
+
+<ul>
+  <li>Site institucional completo com front-end moderno pronto para apresentação.</li>
+  <li>Código estruturado e otimizado com apoio de LLMs e ferramentas de IA (Claude, Gemini, Antigravity).</li>
+  <li>Planejamento, escopo, regras de negócio e controle de qualidade direcionados por mim.</li>
+</ul>
+
+<h3>Funcionalidades do sistema</h3>
+<p>O sistema abrange desde a autenticação e controle de usuários até a gestão administrativa de vendas:</p>
+
+<ul>
+  <li><strong>Sistema de login e cadastro:</strong> autenticação segura e persistência de dados de usuários via Supabase (banco de dados relacional PostgreSQL).</li>
+  <li><strong>Painel administrativo (admin):</strong> ambiente protegido que permite visualizar todas as pessoas cadastradas na plataforma.</li>
+  <li><strong>Sistema de permissão de admin:</strong> mecanismo de governança onde é possível promover um usuário à função de administrador associando seu e-mail a essa permissão.</li>
+  <li><strong>Sistema de cupons de desconto:</strong> módulo para cadastro, validação e aplicação de descontos em compras e planos.</li>
+  <li><strong>Aba exclusiva para administradores:</strong> painel com visualização em tempo real de preços/planos adquiridos pelos usuários e pedidos realizados.</li>
+</ul>
+
+<h3>Stack tecnológica</h3>
+<p>A arquitetura do projeto foi desenhada para garantir robustez relacional e rapidez no ciclo de desenvolvimento:</p>
+
+<table>
+  <tr><th>Frontend</th><td>Desenvolvido com apoio de IA (Claude, Gemini, Antigravity)</td></tr>
+  <tr><th>Backend e autenticação</th><td>Supabase Auth</td></tr>
+  <tr><th>Banco de dados</th><td>Supabase (PostgreSQL)</td></tr>
+  <tr><th>Permissões e RBAC</th><td>Controle de administradores por associação de e-mail</td></tr>
+  <tr><th>Módulos comerciais</th><td>Cupons de desconto, planos e listagem de pedidos</td></tr>
+  <tr><th>Repositório GitHub</th><td><a href="https://github.com/rossaario322/aromagrao">github.com/rossaario322/aromagrao</a></td></tr>
+</table>
+
+<h3>Status operacional atual</h3>
+<p>O backend (login, banco de dados, cupons e painel administrativo) está atualmente desativado na versão em produção do site, mas encontra-se totalmente implementado, testado e pronto para reativação imediata quando necessário.</p>
+
+<ul>
+  <li>Front-end 100% navegável e demonstrável.</li>
+  <li>Estrutura de tabelas, autenticação e rotas Supabase prontas para conexão imediata.</li>
+</ul>
+
+
+<h2>3. Flappy Bird em Python (Pygame)</h2>
+<p class="sub">Jogo recriado em Python com a biblioteca Pygame, com uma IA para jogar sozinha como próximo passo</p>
+
+<h3>Desenvolvimento do jogo com Pygame</h3>
+<p>Este projeto pessoal foi concebido para explorar a convergência entre desenvolvimento de jogos com Python/Pygame e algoritmos de aprendizado autônomo (self-learning).</p>
+<p>A recriação completa da física (gravidade, impulso, vetores de velocidade), renderização de sprites, controle de colisão com canos e contagem de pontuação do Flappy Bird foi implementada diretamente em Python utilizando a biblioteca Pygame.</p>
+
+<ul>
+  <li>Interface gráfica, loop de eventos, renderização de sprites e física construídos com Pygame.</li>
+  <li>Todo o jogo foi programado por mim, sem IA gerando o código.</li>
+</ul>
+
+<h3>Status atual e próximo passo</h3>
+<p>O jogo está funcionando. A próxima etapa do projeto é colocar uma IA para jogar sozinha, aprendendo com as colisões e se adaptando aos obstáculos. Essa parte ainda não foi implementada.</p>
+
+<h3>Ficha técnica</h3>
+<table>
+  <tr><th>Linguagem do jogo</th><td>Python</td></tr>
+  <tr><th>Biblioteca de jogos</th><td>Pygame</td></tr>
+  <tr><th>Papel previsto da IA</th><td>Jogar o jogo de forma autônoma e se adaptar</td></tr>
+  <tr><th>Mecanismo previsto</th><td>Auto-aprendizagem (self-learning)</td></tr>
+  <tr><th>Status</th><td>Jogo funcionando; IA ainda não implementada</td></tr>
+</table>
+
+
+<h2>4. Montagem prática de PC gamer e arquitetura de hardware</h2>
+<p class="sub">Aquisição individual dos componentes, montagem física completa e configuração de estabilidade e fluxo de ar</p>
+
+<h3>Seleção, compatibilidade e aquisição das peças</h3>
+<p>Este projeto envolveu o domínio prático da arquitetura de hardware: pesquisei, selecionei criteriosamente a compatibilidade técnica e adquiri individualmente todas as peças necessárias para montar meu próprio computador gamer.</p>
+<p>A especificação levou em conta o equilíbrio térmico, consumo energético (TDP), dimensionamento da fonte de alimentação e largura de banda dos barramentos (PCIe 4.0/5.0, canais de memória e conexões NVMe).</p>
+
+<ul>
+  <li><strong>Processador (CPU):</strong> escolha baseada em soquete, quantidade de núcleos/threads e compatibilidade de chipset.</li>
+  <li><strong>Placa-mãe:</strong> avaliação de VRMs, slots de expansão PCIe, conexões M.2 e suporte a overclock/XMP.</li>
+  <li><strong>Memória RAM:</strong> operação configurada em Dual Channel nos slots prioritários (A2/B2) para largura de banda máxima.</li>
+  <li><strong>Placa de vídeo (GPU):</strong> instalação e fixação no slot PCIe x16 principal com alimentação dedicada.</li>
+  <li><strong>Armazenamento:</strong> SSD NVMe M.2 de alta velocidade com dissipador térmico dedicado.</li>
+  <li><strong>Fonte de alimentação (PSU):</strong> dimensionamento de potência com certificação 80 Plus e PFC ativo.</li>
+  <li><strong>Gabinete e refrigeração:</strong> planejamento de fluxo de ar positivo/negativo com ventoinhas e pasta térmica de alta condutividade.</li>
+</ul>
+
+<h3>Execução da montagem física e conexões</h3>
+<p>Realizei a montagem física completa de ponta a ponta, conhecendo com precisão o posicionamento de cada componente e a pinagem dos conectores da placa-mãe:</p>
+
+<ul>
+  <li>Instalação cuidadosa do processador no soquete (alinhamento dos pinos e marcações) e aplicação homogênea de pasta térmica.</li>
+  <li>Fixação do cooler/dissipador com pressão balanceada para garantir transferência térmica ideal.</li>
+  <li>Encaixe firme das memórias RAM até o travamento das travas de retenção.</li>
+  <li>Instalação de espaçadores (standoffs) no gabinete e fixação da placa-mãe sem estresse mecânico no PCB.</li>
+  <li>Conexão de todos os cabos de alimentação: conector ATX 24 pinos, EPS 8 pinos da CPU e cabos PCIe dedicados para a GPU.</li>
+  <li>Ligação precisa dos cabos do painel frontal (Power SW, Reset SW, Power LED, HDD LED, portas USB 3.0 e HD Audio).</li>
+  <li>Cable management (organização de cabos) na traseira do gabinete para desobstruir a circulação de ar interno.</li>
+</ul>
+
+<h3>Teste de POST, BIOS e validação operacional</h3>
+<p>Após a conferência de todas as conexões, realizei o primeiro teste de POST (Power-On Self-Test), acessando a interface UEFI/BIOS para ativar o perfil de memória XMP/DOCP, ajustar as curvas de rotação das ventoinhas (fan curves) e configurar a prioridade de boot para instalação do sistema operacional.</p>
+<p>O sistema foi validado com testes de estresse para monitoramento das temperaturas de CPU e GPU, comprovando estabilidade total e eficiência no fluxo de ar.</p>
+
+<h3>Ficha técnica</h3>
+<table>
+  <tr><th>Tipo de projeto</th><td>Montagem física completa de PC gamer</td></tr>
+  <tr><th>Escopo de atuação</th><td>Seleção, compra, montagem física e setup de BIOS</td></tr>
+  <tr><th>Conhecimento aplicado</th><td>Arquitetura de hardware, pinagens e refrigeração</td></tr>
+  <tr><th>Status operacional</th><td>PC 100% montado, estável e em operação diária</td></tr>
+</table>
+
+
+<h2>5. WeForge: construção de sites com IA e automações de prospecção</h2>
+<p class="sub">Como estruturei a agência digital onde todos os sites e soluções são desenvolvidos com auxílio de inteligência artificial</p>
+
+<h3>Fundação da WeForge e desenvolvimento de sites com IA</h3>
+<p>Na WeForge (site oficial: weforge.com.br, agência web com sede em Curitiba/PR e atendimento a negócios de todo o Brasil), atuo como fundador, sendo responsável por todo o ciclo de produto, estratégia comercial e entrega técnica.</p>
+<p>Todos os sites, landing pages e plataformas criados pela WeForge são desenvolvidos com auxílio de inteligência artificial (utilizando ferramentas como Google AI Studio, Gemini, Claude e LLMs para geração, estruturação e otimização de código), sob minha constante direção criativa, arquitetura técnica e validação de qualidade.</p>
+
+<ul>
+  <li>Website oficial da agência: <a href="https://weforge.com.br">weforge.com.br</a></li>
+  <li>Desenvolvimento ágil de sites institucionais e sistemas de agendamento 100% potencializados por IA.</li>
+  <li>Supervisão técnica humana garantindo código limpo, responsividade, SEO e integração de bancos de dados.</li>
+  <li>Estruturação completa de domínio, hospedagem em nuvem e presença digital personalizada para cada cliente.</li>
+</ul>
+
+<h3>Metodologia: como a IA é aplicada nos projetos da WeForge</h3>
+<p>O modelo operacional da WeForge utiliza a inteligência artificial em todas as etapas de criação de um site:</p>
+
+<ol>
+  <li><strong>Estruturação e prototipagem:</strong> geração acelerada de layouts e componentes web funcionais com IA.</li>
+  <li><strong>Implementação de código:</strong> uso de ferramentas de IA para aceleração do desenvolvimento em React, Tailwind, HTML/CSS e integração de APIs.</li>
+  <li><strong>Otimização e segurança:</strong> revisão de código, testes de responsividade e configuração de servidores.</li>
+</ol>
+
+<h3>Ficha técnica</h3>
+<table>
+  <tr><th>Papel</th><td>Fundador</td></tr>
+  <tr><th>Website oficial</th><td><a href="https://weforge.com.br">weforge.com.br</a></td></tr>
+  <tr><th>Modelo de desenvolvimento</th><td>Desenvolvimento web com auxílio de IA</td></tr>
+  <tr><th>Ferramentas de IA utilizadas</th><td>Google AI Studio, Gemini, Claude, LLMs</td></tr>
+  <tr><th>Período</th><td>Maio de 2026 até o momento</td></tr>
+  <tr><th>Atendimento</th><td>Curitiba, PR e todo o Brasil</td></tr>
+</table>
+
+<h3>Sistema proprietário de prospecção com IA (mais de 200 leads)</h3>
+<p>Para além da construção de sites, projetei e implementei um sistema de prospecção comercial automatizada apoiado por inteligência artificial.</p>
+<p>O fluxo realiza envios de mensagens personalizadas e contextuais via WhatsApp, gerando um pipeline comercial consistente com mais de 200 leads mapeados, abordados e engajados.</p>
+
+<table>
+  <tr><th>Automação comercial</th><td>Prospecção WhatsApp com IA</td></tr>
+  <tr><th>Volume de leads</th><td>Mais de 200 leads mapeados e engajados</td></tr>
+  <tr><th>Resultado comercial</th><td>Pipeline ativo em constante expansão</td></tr>
+</table>
+
+
+<h2>6. Gestão de contratos e análise de dados no DPROJ (estágio em Direito)</h2>
+<p class="sub">Vivência no setor público cursando Direito: conformidade com a Lei nº 14.133/2021, cotações de mercado e controle no Excel</p>
+
+<h3>Contexto acadêmico e escopo de atuação</h3>
+<p>Durante a graduação em Direito (onde cursei 3 períodos entre janeiro de 2025 e junho de 2026), realizei estágio no Departamento de Projetos (DPROJ) de junho a dezembro de 2025 como auxiliar de contratos.</p>
+<p>Nessa função, apliquei os conhecimentos jurídicos no acompanhamento e na fiscalização de contratos administrativos, sempre em conformidade estrita com as diretrizes da Lei nº 14.133/2021 (Nova Lei de Licitações e Contratos Administrativos).</p>
+
+<ul>
+  <li>Estágio formal realizado durante a graduação em Direito (3 períodos cursados).</li>
+  <li>Apoio direto na gestão, fiscalização e acompanhamento dos prazos e obrigações contratuais públicas.</li>
+  <li>Utilização intensiva do Excel para padronização, controle e organização de dados contratuais.</li>
+  <li>Pesquisa analítica de dados de mercado, levantando cotações e contratos de referência para embasar novos processos de contratação pública.</li>
+</ul>
+
+<h3>Competências jurídicas e analíticas fortalecidas</h3>
+<p>A vivência aliou o rigor técnico-jurídico da análise de normas e cláusulas contratuais à disciplina analítica de organização de planilhas e cotações referenciais no setor público.</p>
+
+<h3>Ficha técnica</h3>
+<table>
+  <tr><th>Órgão / setor</th><td>DPROJ (Departamento de Projetos)</td></tr>
+  <tr><th>Função</th><td>Estagiário / auxiliar de contratos</td></tr>
+  <tr><th>Contexto acadêmico</th><td>Cursando bacharelado em Direito</td></tr>
+  <tr><th>Base legal</th><td>Lei nº 14.133/2021</td></tr>
+  <tr><th>Ferramenta central</th><td>Microsoft Excel</td></tr>
+</table>
+
+
+<h2>7. Relação entre criminalidade e fatores socioeconômicos em Curitiba e RMC</h2>
+<p class="sub">Pesquisa quantitativa do 3º ano do Ensino Médio (CPM) correlacionando dados do IPARDES, SESP-PR e IBGE com renda e violência</p>
+
+<h3>Contexto institucional e autoria</h3>
+<p>Artigo de pesquisa produzido no âmbito da disciplina de Estatística do 3º ano do Ensino Médio no Colégio da Polícia Militar do Paraná (CPM), sob orientação da Profa. Elisângela Zarpelon Aksenen.</p>
+<p>Autores: Maryana Serafim da Silva, Matheus Freitas de Campos, Nicolas Lisboa Lemke, Sérgio Tadashi Camargo da Silveira e Victor Eduardo Ramos.</p>
+
+<ul>
+  <li>Instituição: Colégio da Polícia Militar do Paraná (CPM), Curitiba/PR.</li>
+  <li>Disciplina: Estatística (3º ano do Ensino Médio, 2024).</li>
+  <li>Orientadora: Profa. Elisângela Zarpelon Aksenen.</li>
+</ul>
+
+<h3>Metodologia e coleta quantitativa</h3>
+<blockquote>Uma pessoa não nasce com a marca da criminalidade... o ato criminoso decorre de uma avaliação racional acerca dos custos e benefícios esperados pelo crime em comparação aos resultados obtidos no mercado de trabalho legal (Gary Becker, 1968).</blockquote>
+
+<p>A investigação adotou metodologia de análise estatística quantitativa a partir da extração e cruzamento de dados públicos do IPARDES (Instituto Paranaense de Desenvolvimento Econômico e Social), SESP-PR (Secretaria de Segurança Pública) e CAPE (Centro de Análise, Planejamento e Estatística).</p>
+<p>O estudo avaliou o impacto de variáveis como PIB per capita, nível de escolaridade, taxa de desemprego e coeficiente de desigualdade na incidência de homicídios, furtos, roubos e estelionatos.</p>
+
+<h3>Disparidades socioeconômicas entre as regionais de Curitiba</h3>
+<p><strong>Regional Matriz (Centro):</strong> apresenta a maior renda média da capital (R$ 6.445,18, quase o dobro da média do restante da cidade) e concentra 55% da renda comercial regional. Apesar da alta prosperidade econômica, registra elevada incidência de furtos e roubos patrimoniais em razão do intenso fluxo populacional e de pedestres.</p>
+<p><strong>Regional CIC (Cidade Industrial de Curitiba):</strong> com 172.669 habitantes e 43 km², desponta com o maior número de homicídios da capital (136 mortes registradas entre 2020 e 2024; 29 em 2023). A desigualdade social interna, aliada à carência de infraestrutura em ocupações irregulares e deficiência de policiamento ostensivo em áreas periféricas, potencializa os índices de violência.</p>
+<p><strong>Regional Santa Felicidade:</strong> marcada por forte dualismo interno. De um lado, o Mossunguê/Ecoville (alto poder aquisitivo, verticalização de luxo e o ParkShoppingBarigüi com R$ 1,5 bilhão em vendas); de outro, Lamenha Pequena (comunidade de perfil rural com 1.146 habitantes e apenas 1 homicídio registrado nos últimos 4 anos, refletindo baixa densidade urbana).</p>
+
+<table>
+  <tr><th>Homicídios totais em Curitiba (2020 a 2024)</th><td>1.036 ocorrências registradas</td></tr>
+  <tr><th>Regional com maior incidência</th><td>CIC (136 homicídios no período)</td></tr>
+  <tr><th>Bairros com zero homicídios (9,3%)</th><td>Ahú, Bom Retiro, Hugo Lange, Jardim Social, Mossunguê, São Lourenço, Tarumã</td></tr>
+</table>
+
+<h3>Análise comparativa na Região Metropolitana de Curitiba (RMC)</h3>
+<p><strong>Araucária:</strong> posicionada no top 14% de IDHM nacional (0,740, 54º no Paraná), porém com renda per capita de R$ 814,39 (metade da capital Curitiba). Em 2023, registrou 2.247 ocorrências de estelionato, 1.488 furtos, 230 roubos e 28 homicídios dolosos.</p>
+<p><strong>Campina Grande do Sul:</strong> população de 47.825 habitantes com densidade de 88,69 hab/km² e PIB per capita de R$ 49.376,42, onde 31,1% das famílias recebem até 1/2 salário mínimo. Registrou 588 estelionatos, 486 furtos e 13 mortes violentas em 2023.</p>
+<p><strong>Almirante Tamandaré:</strong> enfrenta severas vulnerabilidades socioeducacionais e baixos índices de renda, resultando na maior taxa de homicídios da Grande Curitiba logo após São José dos Pinhais.</p>
+
+<table>
+  <tr><th>Araucária (dados IPARDES 2023)</th><td>2.247 estelionatos | 1.488 furtos | 28 homicídios</td></tr>
+  <tr><th>Campina Grande do Sul (2023)</th><td>588 estelionatos | 486 furtos | 13 homicídios</td></tr>
+  <tr><th>Referencial teórico</th><td>Gary Becker, Émile Durkheim, Paulo Freire, Heitor Cesar Scarsi</td></tr>
+</table>
+
+
+<h2>8. Análise comportamental do aluno CPM frente a Dale Carnegie</h2>
+<p class="sub">Estudo no Itinerário Formativo de Estatística do 3º ano do CPM aplicando método misto (survey quantitativo e análise qualitativa)</p>
+
+<h3>Identificação e contexto institucional</h3>
+<blockquote>Corpo que não vibra é esqueleto que se arrasta. (Ten. Cunha, epígrafe do CPM)</blockquote>
+
+<p>Trabalho apresentado ao Colégio da Polícia Militar do Paraná Cel. PM Felippe de Sousa Miranda como requisito para avaliação no Itinerário Formativo: Aprofundamento em Estatística (Curitiba, maio de 2024).</p>
+<p>Orientadora: Profa. Dra. Elisângela Zarpelon Aksenen.</p>
+<p>Autores: Maryana Serafim da Silva, Matheus Freitas de Campos, Nicolas Lisboa Lemke, Sérgio Tadashi Camargo da Silveira e Victor Eduardo Ramos.</p>
+
+<h3>Fundamentação teórica: sociologia, epistemologia e comportamento</h3>
+<ul>
+  <li><strong>Émile Durkheim (1858 a 1917):</strong> a educação como principal mecanismo de socialização dos indivíduos, construindo "fatos sociais" exteriores que moldam as condutas e reações no convívio coletivo.</li>
+  <li><strong>B. F. Skinner (behaviorismo radical):</strong> a análise do comportamento como ciência rigorosa focada na identificação de padrões sistêmico-comportamentais e previsibilidade em interações com o ambiente escolar.</li>
+  <li><strong>Francis Bacon (método indutivo):</strong> o empirismo científico estruturado em observação da natureza, reunião racional de dados, formulação de hipóteses e experimentação prática ("saber é poder").</li>
+  <li><strong>Controle de viés e aleatorização (Alan Agresti e Manly):</strong> fundamentos estatísticos para balancear variáveis externas (idade, gênero, contexto) e mitigar margens de erro.</li>
+</ul>
+
+<h3>Os preceitos de Dale Carnegie analisados no CPM</h3>
+<p>A pesquisa selecionou 6 preceitos fundamentais da obra "Como Fazer Amigos e Influenciar Pessoas" (1936) para avaliar sua aplicabilidade e percepção no ecossistema discente do CPM:</p>
+
+<ol>
+  <li>Não critique, não condene, não se queixe;</li>
+  <li>Aprecie honesta e sinceramente;</li>
+  <li>Desperte um veemente desejo na outra pessoa;</li>
+  <li>Torne-se verdadeiramente interessado na outra pessoa;</li>
+  <li>Sorria;</li>
+  <li>Lembre-se de que o nome de uma pessoa é para ela o som mais doce e mais importante que existe em qualquer idioma.</li>
+</ol>
+
+<h3>Abordagem metodológica mista (quantitativa e qualitativa)</h3>
+<p><strong>Etapa quantitativa:</strong> aplicação de survey online via formulário digital com questões estruturadas direcionadas ao corpo discente do CPM, possibilitando mensurar a frequência, conhecimento e identificação dos padrões de relações interpessoais.</p>
+<p><strong>Etapa qualitativa:</strong> entrevistas com perguntas abertas e análise de conteúdo (Bardin, 2011), permitindo compreender motivações intrínsecas, crenças, valores e a complexidade subjetiva das vivências escolares dos estudantes.</p>
+
+<h3>Ficha técnica</h3>
+<table>
+  <tr><th>Instituição</th><td>Colégio da Polícia Militar do Paraná (CPM)</td></tr>
+  <tr><th>Itinerário formativo</th><td>Aprofundamento em Estatística (3º ano EM)</td></tr>
+  <tr><th>Orientação acadêmica</th><td>Profa. Dra. Elisângela Zarpelon Aksenen</td></tr>
+  <tr><th>Metodologia</th><td>Pesquisa mista (Creswell, 2007; Bardin, 2011; Agresti, 2012)</td></tr>
+</table>
+
+
+<h2>9. Barbie: padrões, consumismo e representatividade na sociedade contemporânea</h2>
+<p class="sub">Pesquisa de campo com 68 entrevistados e análise sociocultural desenvolvida no 3º ano do Ensino Médio no CPM</p>
+
+<h3>Contexto acadêmico e equipe</h3>
+<p>Trabalho de pesquisa acadêmica desenvolvido no 3º ano do Ensino Médio no Colégio da Polícia Militar do Paraná (CPM), sob orientação da Profa. Joyce Meri Sera Marques na disciplina de Geografia.</p>
+<p>Autores: Lara Garrido Costa, Maria Eduarda Cordeiro de Paula, Pedro Logan Ribeiro Pinto e Victor Eduardo Ramos.</p>
+
+<ul>
+  <li>Instituição: Colégio da Polícia Militar do Paraná (CPM).</li>
+  <li>Disciplina: Geografia (3º ano do Ensino Médio).</li>
+  <li>Docente orientadora: Profa. Joyce Meri Sera Marques.</li>
+</ul>
+
+<h3>Pesquisa de campo e levantamento estatístico (68 respondentes)</h3>
+<p>Entre 25 de agosto e 15 de setembro de 2023, a equipe realizou uma pesquisa de campo com 68 voluntários de diversas faixas etárias (14 a 65 anos), estruturada em 8 perguntas (6 de múltipla escolha e 2 abertas com relatos qualitativos):</p>
+
+<ul>
+  <li>75% dos participantes responderam que já passaram por situações de desconforto devido ao ciclo social ditar o que é certo/errado ou bonito/feio.</li>
+  <li>64,7% acreditam que procedimentos estéticos (rinoplastia, harmonização facial, botox, lipoaspiração) ditam padrões de beleza na sociedade.</li>
+  <li>72,2% dos respondentes que buscaram o "ideal inatingível" relataram ter recorrido à restrição de refeições.</li>
+  <li>33,3% dos participantes apontaram a realização ou procura por cirurgias plásticas e procedimentos invasivos (bichectomia, rinoplastia).</li>
+  <li>45,6% definem a Barbie como "um ideal de beleza inatingível" e 42,6% como "uma expectativa de aparência".</li>
+</ul>
+
+<h3>Fundamentação teórica: Freud e análise dos arquétipos</h3>
+<ul>
+  <li><strong>Psicologia das massas (Sigmund Freud):</strong> estudo de como o indivíduo em sociedade renuncia a traços de individualidade para adotar condutas padronizadas que garantam o pertencimento ao grupo social.</li>
+  <li><strong>Arquétipos femininos (Charchat e Randazzo):</strong> análise da figura da Barbie sob o arquétipo da "Grande Mãe" (figura acolhedora e provedora) e da "Donzela / Mulher Fatal" (idealização estética inalcançável e fascínio midiático).</li>
+</ul>
+
+<h3>Evolução da representatividade e conclusões</h3>
+<p>O estudo traçou a linha temporal de evolução da Barbie desde 1959, destacando a primeira boneca negra (Christie, 1968), as linhas profissionais em STEM (ciência, tecnologia, engenharia e programação), a inclusão de modelos com deficiência (cadeirantes e com próteses na década de 2010) e a articulação com o movimento Body Positivity.</p>
+<p>As conclusões do artigo alertam para os riscos psicológicos (ansiedade, dismorfia corporal, transtornos alimentares) decorrentes de padrões irreais difundidos pelo mercado e redes sociais, enfatizando a importância do autocuidado e valorização da diversidade.</p>
+
+<h3>Ficha técnica</h3>
+<table>
+  <tr><th>Instituição</th><td>Colégio da Polícia Militar do Paraná (CPM)</td></tr>
+  <tr><th>Amostra coletada</th><td>68 participantes (14 a 65 anos)</td></tr>
+  <tr><th>Orientação</th><td>Profa. Joyce Meri Sera Marques</td></tr>
+  <tr><th>Fundamentação teórica</th><td>Sigmund Freud, Charchat, Randazzo, SciELO, Pós PUCPR Digital</td></tr>
+</table>
+
+
+<h2>10. Formação na PUCPR e certificações Google e IBM</h2>
+<p class="sub">Base acadêmica em Sistemas de Informação combinada com formações técnicas internacionais</p>
+
+<h3>Graduação universitária</h3>
+<p>Curso o bacharelado em Sistemas de Informação na Pontifícia Universidade Católica do Paraná (PUCPR), atualmente no 2º período (turno noturno), com previsão de conclusão em dezembro de 2030.</p>
+<p>O curso consolida os fundamentos em engenharia de software, modelagem de dados, sistemas distribuídos e arquitetura corporativa.</p>
+
+<h3>Certificações internacionais concluídas</h3>
+<p>Para acelerar o domínio prático em dados e inteligência artificial, concluí um conjunto de certificações chaves em 2026:</p>
+
+<ul>
+  <li>IBM: Python for Data Science, AI &amp; Development (abril de 2026)</li>
+  <li>Google: Foundations: Data, Data, Everywhere (maio de 2026)</li>
+  <li>Google: Ask Questions to Make Data-Driven Decisions (maio de 2026)</li>
+  <li>Google: Prepare Data for Exploration (maio de 2026)</li>
+</ul>
+
+<h3>Ficha técnica</h3>
+<table>
+  <tr><th>Instituição de ensino superior</th><td>PUCPR, Curitiba</td></tr>
+  <tr><th>Curso</th><td>Sistemas de Informação (bacharelado)</td></tr>
+  <tr><th>Nivelamento de inglês</th><td>Pré-intermediário (B1.2) via PUCPR Idiomas</td></tr>
+</table>
+
+
+<footer class="nota">
+  <p>Sobre o uso de IA neste material:</p>
+
+  <ul>
+    <li>Revisões de texto (ortografia, gramática, clareza);</li>
+    <li>Organizar ideias que já eram minhas antes de escrever;</li>
+    <li>Feedback sobre rascunhos que eu escrevi.</li>
+  </ul>
+
+  <p>[escreva aqui a frase sobre o código, igual à da outra página]</p>
+
+  <p>Todo o conteúdo é meu: os fatos, os projetos e os resultados descritos.</p>
+</footer>
+
+</body>
+</html>
