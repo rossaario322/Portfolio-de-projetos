@@ -28,32 +28,16 @@ Curitiba, PR · Sistemas de Informação na PUCPR
 - Ensino Médio no Colégio da Polícia Militar do Paraná (CPM), com três pesquisas em coautoria: criminalidade e fatores socioeconômicos em Curitiba e RMC, análise comportamental do aluno CPM frente a Dale Carnegie, e Barbie, padrões e representatividade.
 - Certificações IBM e Google em Python para dados e fundamentos de análise de dados (2026).
 
-## Como abrir
-
-Não precisa instalar nada nem rodar servidor. Baixe os arquivos e dê dois cliques no `index.html`.
-
-## Estrutura
-
-```
-index.html      conteúdo da página
-style.css       toda a aparência
-public/         imagens
-```
-
 ## Tecnologias
 
 HTML e CSS puros. Sem framework, sem biblioteca, sem dependência externa.
 
-## Sobre o uso de IA neste material
+## Sobre o uso de IA neste material:
 
-- Revisões de texto (ortografia, gramática, clareza).
-- Organizar ideias que já eram minhas antes de escrever.
-- Feedback sobre rascunhos que eu escrevi.
+Revisões de texto (ortografia, gramática, clareza);
+Organizar ideias que já eram minhas antes de escrever;
+Feedback sobre rascunhos que eu escrevi.
 
-[escreva aqui a frase sobre o código, a mesma que está no rodapé do site]
+Todo o conteúdo é meu: os fatos, as histórias, as opiniões e as fotos.
 
-Todo o conteúdo é meu: os fatos, os projetos e os resultados descritos.
 
-## Contato
-
-[e-mail, LinkedIn ou o que você quiser colocar aqui]
